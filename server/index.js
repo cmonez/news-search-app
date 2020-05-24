@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var fetch = require('node-fetch');
 var bodyParser = require('body-parser');
+var API_KEY = require('../apiKey');
 // UNCOMMENT THE DATABASE YOU'D LIKE TO USE
 // var items = require('../database-mysql');
 // var items = require('../database-mongo');
@@ -14,13 +15,16 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 
 
 app.get('/items', function (req, res) {
-  // items.selectAll(function (err, data) {
-  //   if (err) {
-  //     res.sendStatus(500);
-  //   } else {
-  //     res.json(data);
-  //   }
-  // });
+  fetch("https://newsapi.org/v2/top-headlines?q=trump", { method: 'GET', headers: { "X-Api-Key": API_KEY } })
+    .then((res) => {
+      return res.json()
+    })
+    .then((json) => {
+      console.log(json);
+      // Do something with the returned data.
+    });
+
+
 });
 
 app.listen(3000, function () {
