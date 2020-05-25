@@ -27,8 +27,8 @@
     "mysql": "^2.13.0",
     "node-fetch": "^2.6.0",
     "popper.js": "^1.16.1",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "styled-components": "^5.1.0"
   }
 }
