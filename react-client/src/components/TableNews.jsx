@@ -1,6 +1,7 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import $ from 'jquery';
 
 const TableNews = ({ articles }) => {
 
@@ -10,7 +11,7 @@ const TableNews = ({ articles }) => {
         {article.source.name}
       </td>
       <td>
-        <a href={article.url} target="_blank">
+        <a href={article.url} target={article.url} target="_blank">
           <img src={article.urlToImage} width="250px" />
         </a>
       </td>
@@ -24,7 +25,9 @@ const TableNews = ({ articles }) => {
         <p>
           Author: {article.author}
         </p>
-        <Button variant="outline-success">Save For Later</Button>
+        <Button variant="outline-success" onClick={() => {
+          console.log(typeof article)
+        }}>Save For Later</Button>
       </td>
       <td>{article.publishedAt}</td>
     </tr>
