@@ -4,7 +4,7 @@ import $ from 'jquery';
 import List from './components/List.jsx';
 // import styled from 'styled-components'
 import SearchBar from './components/searchBar.jsx'
-
+import TableNews from './components/TableNews.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -33,6 +33,7 @@ class App extends React.Component {
       <h1>Item List</h1>
       <SearchBar />
       <List items={this.state.items} />
+      <TableNews />
     </div >)
   }
 }
