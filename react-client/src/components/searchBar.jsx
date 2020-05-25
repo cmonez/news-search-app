@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 // import styled from 'styled-components';
+// import styled from 'styled-components';
 
 class SearchBar extends React.Component {
   constructor(props) {
