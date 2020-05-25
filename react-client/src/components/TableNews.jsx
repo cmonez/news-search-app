@@ -10,7 +10,9 @@ const TableNews = ({ articles }) => {
         {article.source.name}
       </td>
       <td>
-        <img src={article.urlToImage} width="250px" />
+        <a href={article.url} target="_blank">
+          <img src={article.urlToImage} width="250px" />
+        </a>
       </td>
       <td>
         <p>
