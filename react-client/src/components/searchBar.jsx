@@ -3,14 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
-// const Button = styled.button`
-//   background: transparent;
-//   border-radius: 3px;
-//   border: 2px solid palevioletred;
-//   color: palevioletred;
-//   margin: 0 1em;
-//   padding: 0.25em 1em;
-// `
+import { Col, Row, Form } from "react-bootstrap";
 
 
 class SearchBar extends React.Component {
@@ -37,16 +30,14 @@ class SearchBar extends React.Component {
   }
   render() {
     return (
-
-      <form onSubmit={this.handleSubmit}>
-        <Button variant="outline-primary">Primary</Button>
-        <label>
-          Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-
-      </form>
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Row>
+          <Col>
+            <Form.Control placeholder="First name" type="text" value={this.state.value} onChange={this.handleChange} />
+            <Button variant="outline-primary" type="submit" value="Submit" >Primary</Button>
+          </Col>
+        </Form.Row>
+      </Form>
     )
   }
 }
