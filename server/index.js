@@ -15,12 +15,13 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 
 
 app.get('/items', function (req, res) {
+
   fetch("https://newsapi.org/v2/top-headlines?q=trump", { method: 'GET', headers: { "X-Api-Key": API_KEY } })
     .then((res) => {
       return res.json()
     })
     .then((json) => {
-      console.log(json);
+      console.log(json.articles);
       // Do something with the returned data.
     });
 
