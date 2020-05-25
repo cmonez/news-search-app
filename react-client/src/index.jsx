@@ -5,11 +5,13 @@ import List from './components/List.jsx';
 // import styled from 'styled-components'
 import SearchBar from './components/searchBar.jsx'
 import TableNews from './components/TableNews.jsx'
+import SampleData from '../../SampleData';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      articles: SampleData.articles,
       items: []
     }
   }
@@ -32,8 +34,8 @@ class App extends React.Component {
 
       <h1>Item List</h1>
       <SearchBar />
-      <List items={this.state.items} />
-      <TableNews />
+      {/* <List items={this.state.items} /> */}
+      <TableNews articles={this.state.articles} />
     </div >)
   }
 }

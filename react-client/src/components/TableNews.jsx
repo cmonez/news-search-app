@@ -1,38 +1,39 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 
-const TableNews = (props) => {
+const TableNews = ({ articles }) => {
 
+  const Articles = articles.map((article) => {
+    return <tr>
+      <td>
+        {article.source.name}
+      </td>
+      <td>
+        <img src={article.urlToImage} width="250px" />
+      </td>
+      <td>
+        <p>
+          {article.description}
+        </p>
+      Author: {article.author}
+      </td>
+      <td>{article.publishedAt}</td>
+    </tr>
+  })
 
 
   return (
     <Table striped bordered hover variant="dark">
       <thead>
         <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>Author/News Source</th>
+          <th>Image</th>
+          <th>Description</th>
+          <th>Date Published</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        {Articles}
       </tbody>
     </Table>
   )
