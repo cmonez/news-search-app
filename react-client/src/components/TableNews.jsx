@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 const TableNews = ({ articles }) => {
 
@@ -15,7 +16,10 @@ const TableNews = ({ articles }) => {
         <p>
           {article.description}
         </p>
-      Author: {article.author}
+        <p>
+          Author: {article.author}
+        </p>
+        <Button variant="outline-success">Save For Later</Button>
       </td>
       <td>{article.publishedAt}</td>
     </tr>
