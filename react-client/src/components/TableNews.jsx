@@ -14,6 +14,9 @@ const TableNews = ({ articles }) => {
       </td>
       <td>
         <p>
+          {article.title}
+        </p>
+        <p>
           {article.description}
         </p>
         <p>
