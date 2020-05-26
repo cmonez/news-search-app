@@ -26,11 +26,27 @@ const TableNews = ({ articles }) => {
           Author: {article.author}
         </p>
         <Button variant="outline-success" onClick={() => {
-          console.log(typeof article)
-        }}>Save For Later</Button>
+
+          $.ajax({
+            url: "/saveArticle",
+            type: "POST",
+            processData: false,
+            contentType: "application/json",
+            dataType: 'json',
+            data: JSON.stringify(article),
+          }).done((data) => { console.log('Succes', data) })
+            .fail((error) => { console.log('error', error) })
+
+
+          //  OnClick inner function parens
+        }
+          // VV onClick parens
+        }
+        >
+          Save For Later</Button>
       </td>
       <td>{article.publishedAt}</td>
-    </tr>
+    </tr >
   })
 
 

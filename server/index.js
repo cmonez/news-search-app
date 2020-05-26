@@ -11,6 +11,7 @@ var app = express();
 
 // UNCOMMENT FOR REACT
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 
@@ -27,6 +28,14 @@ app.get('/items', function (req, res) {
 
 
 });
+
+app.post('/saveArticle', function (req, res) {
+  console.log(req.body)
+  res.send('Works')
+
+
+});
+
 
 app.listen(3000, function () {
   console.log('listening on port 3000!');
