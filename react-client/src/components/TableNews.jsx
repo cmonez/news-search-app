@@ -5,7 +5,7 @@ import $ from 'jquery';
 
 const TableNews = ({ articles }) => {
 
-  const Articles = articles.map((article) => {
+  const Articles = articles.map((article, index) => {
     return <tr>
       <td>
         {article.source.name}
@@ -25,7 +25,9 @@ const TableNews = ({ articles }) => {
         <p>
           Author: {article.author}
         </p>
-        <Button variant="outline-success" onClick={() => {
+        <Button variant="outline-success" id={index} onClick={() => {
+
+          $(`#${index}`).prop('disabled', true).removeClass("variant")
 
           $.ajax({
             url: "/saveArticle",
@@ -36,8 +38,6 @@ const TableNews = ({ articles }) => {
             data: JSON.stringify(article),
           }).done((data) => { console.log('Succes', data) })
             .fail((error) => { console.log('error', error) })
-
-
           //  OnClick inner function parens
         }
           // VV onClick parens
