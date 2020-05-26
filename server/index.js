@@ -30,9 +30,8 @@ app.get('/items', function (req, res) {
 });
 
 app.post('/saveArticle', function (req, res) {
-  console.log(typeof req.body)
   db.Article.create(req.body).then(() => {
-    console.log('Saved')
+    res.send('Saved')
   })
     .catch((error) => {
       console.log('Error in saving item', error)

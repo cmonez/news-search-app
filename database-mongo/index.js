@@ -22,7 +22,7 @@ var articleSchema = mongoose.Schema({
   url: String,
   urlToImage: String,
   publishedAt: String,
-  content: String
+  content: { type: String, unique: true }
 });
 
 var Article = mongoose.model('Article', articleSchema);
