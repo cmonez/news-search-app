@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var API_KEY = require('../apiKey');
 // UNCOMMENT THE DATABASE YOU'D LIKE TO USE
 // var items = require('../database-mysql');
-// var items = require('../database-mongo');
+var db = require('../database-mongo');
 
 var app = express();
 
@@ -30,8 +30,14 @@ app.get('/items', function (req, res) {
 });
 
 app.post('/saveArticle', function (req, res) {
-  console.log(req.body)
-  res.send('Works')
+  console.log(typeof req.body)
+  db.Article.create(req.body).then(() => {
+    console.log('Saved')
+  })
+    .catch((error) => {
+      console.log('Error in saving item', error)
+      res.send('Didnt work')
+    })
 
 
 });
