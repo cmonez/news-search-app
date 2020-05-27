@@ -12,8 +12,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       articles: SampleData.articles,
-      items: []
+      searchTerm: '',
     }
+    this.search = this.search.bind(this)
   }
   componentDidMount() {
     $.ajax({
@@ -29,11 +30,18 @@ class App extends React.Component {
     });
   }
 
+  search(searched) {
+    this.setState({
+      searchTerm: searched
+    })
+    console.log('In parent component', this.state.searchTerm)
+  }
+
   render() {
     return (<div>
 
       <h1>Item List</h1>
-      <SearchBar />
+      <SearchBar search={this.search} />
       {/* <List items={this.state.items} /> */}
       <TableNews articles={this.state.articles} />
     </div >)
