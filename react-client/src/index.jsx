@@ -33,8 +33,8 @@ class App extends React.Component {
   search(searched) {
     console.log('THis was searched', searched)
     axios.post('/searchTerm', { searched: searched })
-      .then((data) => {
-        console.log('Data from node')
+      .then(({ data }) => {
+        console.log('Data from node', data)
         this.setState({ articles: data })
       })
   }
