@@ -29,6 +29,22 @@ app.get('/articles', function (req, res) {
 
 });
 
+app.post('/searchTerm', function (req, res) {
+  console.log('In post', req.body.searched)
+  fetch(`https://newsapi.org/v2/top-headlines?q=${req.body.searched}`, { method: 'GET', headers: { "X-Api-Key": API_KEY } })
+    .then((res) => {
+      return res.json()
+    })
+    .then((json) => {
+      console.log('Getting articles', json.articles)
+      res.send(json.articles)
+      // Do something with the returned data.
+    });
+
+
+});
+
+
 app.post('/saveArticle', function (req, res) {
   // console.log(typeof req.body)
   db.Article.create(req.body).then(() => {

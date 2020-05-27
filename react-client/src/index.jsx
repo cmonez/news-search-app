@@ -6,7 +6,7 @@ import List from './components/List.jsx';
 import SearchBar from './components/searchBar.jsx'
 import TableNews from './components/TableNews.jsx'
 import SampleData from '../../SampleData';
-
+import axios from 'axios';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -31,10 +31,12 @@ class App extends React.Component {
   }
 
   search(searched) {
-    this.setState({
-      searchTerm: searched
-    })
-    console.log('In parent component', this.state.searchTerm)
+    console.log('THis was searched', searched)
+    axios.post('/searchTerm', { searched: searched })
+      .then((data) => {
+        console.log('Data from node')
+        this.setState({ articles: data })
+      })
   }
 
   render() {

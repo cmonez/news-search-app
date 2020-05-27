@@ -22,7 +22,7 @@ class SearchBar extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(`This was searched ${this.state.value}`)
+    // console.log(`This was searched ${this.state.value}`)
 
     this.props.search(this.state.value);
 

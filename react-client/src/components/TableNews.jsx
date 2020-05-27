@@ -27,17 +27,23 @@ const TableNews = ({ articles }) => {
         </p>
         <Button variant="outline-success" id={index} onClick={() => {
 
+          console.log(JSON.stringify(article))
           $(`#${index}`).prop('disabled', true).removeClass("variant")
 
           $.ajax({
             url: "/saveArticle",
             type: "POST",
-            processData: false,
+            // processData: false,
             contentType: "application/json",
-            dataType: 'json',
+            dataType: "json",
             data: JSON.stringify(article),
-          }).done((data) => { console.log('Succes', data) })
-            .fail((error) => { console.log('error', error) })
+            success: () => console.log('Hello'),
+            error: (err) => {
+              console.log('err', err.statusCode);
+            },
+          })
+
+          // .fail((jqXHR, textStatus, error) => { console.log('error', error, textStatus) })
           //  OnClick inner function parens
         }
           // VV onClick parens
