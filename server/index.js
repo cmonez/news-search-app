@@ -15,22 +15,24 @@ app.use(bodyParser.json())
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 
-app.get('/items', function (req, res) {
+app.get('/articles', function (req, res) {
 
-  // fetch("https://newsapi.org/v2/top-headlines?q=trump", { method: 'GET', headers: { "X-Api-Key": API_KEY } })
-  //   .then((res) => {
-  //     return res.json()
-  //   })
-  //   .then((json) => {
-  //     console.log(json.articles);
-  //     // Do something with the returned data.
-  //   });
+  fetch("https://newsapi.org/v2/top-headlines?q=trump", { method: 'GET', headers: { "X-Api-Key": API_KEY } })
+    .then((res) => {
+      return res.json()
+    })
+    .then((json) => {
+      res.send(json.articles)
+      // Do something with the returned data.
+    });
 
 
 });
 
 app.post('/saveArticle', function (req, res) {
+  // console.log(typeof req.body)
   db.Article.create(req.body).then(() => {
+    console.log('Saved')
     res.send('Saved')
   })
     .catch((error) => {
