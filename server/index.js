@@ -17,7 +17,7 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.get('/articles', function (req, res) {
 
-  fetch("https://newsapi.org/v2/top-headlines?q=trump", { method: 'GET', headers: { "X-Api-Key": API_KEY } })
+  fetch("https://newsapi.org/v2/top-headlines?country=us", { method: 'GET', headers: { "X-Api-Key": API_KEY } })
     .then((res) => {
       return res.json()
     })
