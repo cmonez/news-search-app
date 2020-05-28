@@ -60,6 +60,17 @@ app.post('/saveArticle', function (req, res) {
 });
 
 
+app.get('/grabArticles', function (req, res) {
+
+  db.selectAll((err, data) => {
+    if (err) console.log('The error is :', err)
+    console.log('The saved articles!', data)
+  })
+
+
+
+});
+
 app.listen(3000, function () {
   console.log('listening on port 3000!');
 });

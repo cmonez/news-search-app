@@ -3,6 +3,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Nav from 'react-bootstrap/Nav';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 
 class NewsTabs extends React.Component {
   constructor(props) {
@@ -16,7 +17,10 @@ class NewsTabs extends React.Component {
       <Tabs defaultActiveKey="Browse" id="uncontrolled-tab-example" onSelect={(eventKey) => {
         if (this.state.currentClicked === 'Browse' && eventKey === 'Saved') {
 
+          axios.get('/grabArticles')
+            .then(() => console.log('Grabbed!'))
           console.log('Will retrieve saved articles')
+
           this.setState({ currentClicked: 'Saved' })
 
         } else if (this.state.currentClicked === 'Saved' && eventKey === 'Browse') {
