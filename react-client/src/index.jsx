@@ -13,9 +13,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       articles: SampleData.articles,
+      oldArticles: '',
       searchTerm: '',
     }
-    this.search = this.search.bind(this)
+    this.search = this.search.bind(this);
+    this.switchBetweenSearchedAndSavedArticles = this.switchBetweenSearchedAndSavedArticles.bind(this);
   }
   componentDidMount() {
     $.ajax({
@@ -40,12 +42,26 @@ class App extends React.Component {
       })
   }
 
+  switchBetweenSearchedAndSavedArticles(searched) {
+    if (searched) {
+      this.setState({
+        oldArticles: this.state.articles,
+        articles: searched,
+      })
+    } else {
+      this.setState({
+        articles: this.state.oldArticles,
+      })
+    }
+  }
+
+
   render() {
     return (<div>
 
       <h1>Item List</h1>
       <SearchBar search={this.search} />
-      <NewsTabs />
+      <NewsTabs switch={this.switchBetweenSearchedAndSavedArticles} />
       {/* <List items={this.state.items} /> */}
       <TableNews articles={this.state.articles} />
     </div >)

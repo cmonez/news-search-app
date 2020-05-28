@@ -18,13 +18,13 @@ class NewsTabs extends React.Component {
         if (this.state.currentClicked === 'Browse' && eventKey === 'Saved') {
 
           axios.get('/grabArticles')
-            .then(({ data }) => console.log(data))
+            .then(({ data }) => this.props.switch(data))
           console.log('Will retrieve saved articles')
-
           this.setState({ currentClicked: 'Saved' })
 
         } else if (this.state.currentClicked === 'Saved' && eventKey === 'Browse') {
-          console.log('Changing back to Browse!')
+          console.log('Changing back to Browse!');
+          this.props.switch();
           this.setState({ currentClicked: 'Browse' })
         }
       }}>
