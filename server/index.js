@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var fetch = require('node-fetch');
 var bodyParser = require('body-parser');
-var API_KEY = require('../apiKey');
+var API_KEY = require('../newsApiKey');
 // UNCOMMENT THE DATABASE YOU'D LIKE TO USE
 // var items = require('../database-mysql');
 var db = require('../database-mongo');
