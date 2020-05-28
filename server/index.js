@@ -67,16 +67,9 @@ app.get('/grabArticles', function (req, res) {
     data.forEach((article) => {
       arraryOfArticles.push(article['_doc'])
     })
-    console.log(arraryOfArticles)
+    // console.log(arraryOfArticles)
+    res.send(arraryOfArticles)
   })
-
-  // db.selectAll((err, data) => {
-  //   if (err) console.log('The error is :', err)
-
-  //   console.log('the articles,', data)
-  // })
-
-
 
 });
 
