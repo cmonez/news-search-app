@@ -61,11 +61,20 @@ app.post('/saveArticle', function (req, res) {
 
 
 app.get('/grabArticles', function (req, res) {
-
   db.selectAll((err, data) => {
-    if (err) console.log('The error is :', err)
-    console.log('The saved articles!', data)
+    if (err) console.log('Error', err)
+    let arraryOfArticles = [];
+    data.forEach((article) => {
+      arraryOfArticles.push(article['_doc'])
+    })
+    console.log(arraryOfArticles)
   })
+
+  // db.selectAll((err, data) => {
+  //   if (err) console.log('The error is :', err)
+
+  //   console.log('the articles,', data)
+  // })
 
 
 
