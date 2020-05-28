@@ -7,7 +7,13 @@ const NewsTabs = (props) => {
 
 
   return (
-    <Tabs defaultActiveKey="Browse" id="uncontrolled-tab-example" onSelect={(eventKey) => console.log('Clicked', eventKey)}>
+    <Tabs defaultActiveKey="Browse" id="uncontrolled-tab-example" onSelect={(eventKey) => {
+      if (eventKey === 'Saved') {
+        console.log('Will retrieve saved articles')
+      } else {
+        console.log('Keep browsing!')
+      }
+    }}>
       <Tab eventKey="Browse" title="Browse" >
         {/* <Sonnet /> */}
       </Tab>
