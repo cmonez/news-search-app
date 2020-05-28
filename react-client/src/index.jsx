@@ -6,6 +6,7 @@ import List from './components/List.jsx';
 import SearchBar from './components/searchBar.jsx'
 import TableNews from './components/TableNews.jsx'
 import SampleData from '../../SampleData';
+import NewsTabs from './components/NewsTab.jsx'
 import axios from 'axios';
 class App extends React.Component {
   constructor(props) {
@@ -44,6 +45,7 @@ class App extends React.Component {
 
       <h1>Item List</h1>
       <SearchBar search={this.search} />
+      <NewsTabs />
       {/* <List items={this.state.items} /> */}
       <TableNews articles={this.state.articles} />
     </div >)
