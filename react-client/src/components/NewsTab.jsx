@@ -8,16 +8,20 @@ class NewsTabs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stateful: true
+      currentClicked: 'Browse'
     }
   }
   render() {
     return (
       <Tabs defaultActiveKey="Browse" id="uncontrolled-tab-example" onSelect={(eventKey) => {
-        if (eventKey === 'Saved') {
+        if (this.state.currentClicked === 'Browse' && eventKey === 'Saved') {
+
           console.log('Will retrieve saved articles')
-        } else {
-          console.log('Keep browsing!')
+          this.setState({ currentClicked: 'Saved' })
+
+        } else if (this.state.currentClicked === 'Saved' && eventKey === 'Browse') {
+          console.log('Changing back to Browse!')
+          this.setState({ currentClicked: 'Browse' })
         }
       }}>
         <Tab eventKey="Browse" title="Browse" >
