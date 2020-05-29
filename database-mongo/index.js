@@ -37,9 +37,15 @@ var selectAll = function (callback) {
   });
 };
 
+var deleteArticle = function ({ parameter, data }) {
+  return Article.deleteOne({ parameter: data })
+
+}
+
 module.exports = {
   selectAll,
   Article,
+  deleteArticle,
 };
 
 

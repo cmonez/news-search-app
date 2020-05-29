@@ -68,10 +68,17 @@ app.get('/grabArticles', (req, res) => {
   })
 });
 
-
+// Endpoint to delete articles from mongoDB when requested
 app.delete('/deleteArticle', (req, res) => {
-  console.log('Req body', req.body)
-  res.send('Will delete?')
+
+  db.deleteArticle(req.body).then(() => {
+    res.send('Article was deleted!')
+  }).catch((err) => {
+    console.log('There was an error with deletion', err)
+    res.send(err)
+  })
+
+
 
 
 })

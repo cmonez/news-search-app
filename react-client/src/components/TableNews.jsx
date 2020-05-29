@@ -32,7 +32,7 @@ const TableNews = ({ articles, saveOrDelete }) => {
             console.log('Delete functionality here!', article.url)
             axios.delete('/deleteArticle', { data: { url: article.url } })
               .then(response => console.log(response))
-              .catch((err) => console.log(response))
+              .catch((err) => console.log(err))
 
           } else {
 
