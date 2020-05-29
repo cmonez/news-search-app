@@ -11,14 +11,4 @@ const toneAnalyzer = new ToneAnalyzerV3({
   url: Keys.ANALYZER_URL,
 });
 
-toneAnalyzer.tone(
-  {
-    toneInput: 'What the hell. Is this actually working? Ok cool it is.',
-    contentType: 'text/plain'
-  })
-  .then(response => {
-    console.log(JSON.stringify(response.result, null, 2));
-  })
-  .catch(err => {
-    console.log(err);
-  });
+module.exports = toneAnalyzer

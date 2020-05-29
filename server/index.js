@@ -6,7 +6,7 @@ var API_KEY = require('../newsApiKey');
 // UNCOMMENT THE DATABASE YOU'D LIKE TO USE
 // var items = require('../database-mysql');
 var db = require('../database-mongo');
-
+var toneAnalyzer = require('./toneAnalyzer')
 var app = express();
 
 // UNCOMMENT FOR REACT
@@ -78,11 +78,25 @@ app.delete('/deleteArticle', (req, res) => {
     res.send(err)
   })
 
-
-
-
 })
 
+
+
+app.post('/tone', (req, res) => {
+  console.log(req.body.description)
+  toneAnalyzer.tone(
+    {
+      toneInput: req.body.description,
+      contentType: 'text/plain'
+    })
+    .then(response => {
+      console.log(JSON.stringify(response.result, null, 2));
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+})
 
 app.listen(3000, function () {
   console.log('listening on port 3000!');

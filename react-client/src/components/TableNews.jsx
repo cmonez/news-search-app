@@ -9,6 +9,16 @@ const TableNews = ({ articles, saveOrDelete, refresh }) => {
     return <tr>
       <td>
         {article.source.name}
+        <Button onClick={
+
+          () => {
+            console.log(article.description)
+            axios.post('/tone', { description: article.description })
+              .then((response) => console.log(response))
+          }
+        }
+
+        >Get tone</Button>
       </td>
       <td>
         <a href={article.url} target={article.url} target="_blank">
