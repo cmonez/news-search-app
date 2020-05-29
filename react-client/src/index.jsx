@@ -15,6 +15,7 @@ class App extends React.Component {
       articles: SampleData.articles,
       oldArticles: '',
       searchTerm: '',
+      buttonFunctionality: 'Save',
     }
     this.search = this.search.bind(this);
     this.switchBetweenSearchedAndSavedArticles = this.switchBetweenSearchedAndSavedArticles.bind(this);
@@ -47,10 +48,12 @@ class App extends React.Component {
       this.setState({
         oldArticles: this.state.articles,
         articles: searched,
+        buttonFunctionality: 'Delete'
       })
     } else {
       this.setState({
         articles: this.state.oldArticles,
+        buttonFunctionality: 'Save'
       })
     }
   }

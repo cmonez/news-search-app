@@ -27,7 +27,6 @@ const TableNews = ({ articles }) => {
         </p>
         <Button variant="outline-success" id={index} onClick={() => {
 
-          console.log(JSON.stringify(article))
           $(`#${index}`).prop('disabled', true).removeClass("variant")
 
           $.ajax({
@@ -43,7 +42,6 @@ const TableNews = ({ articles }) => {
             },
           })
 
-          // .fail((jqXHR, textStatus, error) => { console.log('error', error, textStatus) })
           //  OnClick inner function parens
         }
           // VV onClick parens
