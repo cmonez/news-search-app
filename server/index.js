@@ -46,8 +46,7 @@ app.post('/searchTerm', function (req, res) {
 
 
 app.post('/saveArticle', function (req, res) {
-  // console.log(typeof req.body)
-  db.Article.create(req.body).then(() => {
+  db.Article.create(req.body.article).then(() => {
     console.log('Saved')
     res.send('Saved')
   })

@@ -2,7 +2,7 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import $ from 'jquery';
-
+import axios from 'axios';
 const TableNews = ({ articles, saveOrDelete }) => {
 
   const Articles = articles.map((article, index) => {
@@ -25,27 +25,17 @@ const TableNews = ({ articles, saveOrDelete }) => {
         <p>
           Author: {article.author}
         </p>
-        <Button variant="outline-success" id={index} onClick={() => {
+        <Button variant="outline-success" id={index} onClick={(event) => {
 
           if (saveOrDelete === 'Delete') {
-            console.log('Delete functionality here!')
+            console.log('Delete functionality here!', article.url)
+
           } else {
             $(`#${index}`).prop('disabled', true)
-            $.ajax({
-              url: "/saveArticle",
-              type: "POST",
-              // processData: false,
-              contentType: "application/json",
-              dataType: "json",
-              data: JSON.stringify(article),
-              success: () => console.log('Hello'),
-              error: (err) => {
-                console.log('err', err.statusCode);
-              },
-            })
+            axios.post("/saveArticle", { article, })
+              .then((response) => { console.log(response) })
+              .catch((err) => { console.log('Error', err) })
           }
-
-          //  OnClick inner function parens
         }
           // VV onClick parens
         }
