@@ -28,14 +28,20 @@ const TableNews = ({ articles, saveOrDelete }) => {
         <Button variant="outline-success" id={index} onClick={(event) => {
 
           if (saveOrDelete === 'Delete') {
+
             console.log('Delete functionality here!', article.url)
+            axios.delete('/deleteArticle', { data: { url: article.url } })
+              .then(response => console.log(response))
+              .catch((err) => console.log(response))
 
           } else {
+
             $(`#${index}`).prop('disabled', true)
             axios.post("/saveArticle", { article, })
               .then((response) => { console.log(response) })
               .catch((err) => { console.log('Error', err) })
           }
+
         }
           // VV onClick parens
         }

@@ -69,8 +69,9 @@ app.get('/grabArticles', (req, res) => {
 });
 
 
-app.delete('deleteArticle', (req, res) => {
-
+app.delete('/deleteArticle', (req, res) => {
+  console.log('Req body', req.body)
+  res.send('Will delete?')
 
 
 })
