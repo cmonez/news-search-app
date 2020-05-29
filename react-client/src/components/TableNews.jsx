@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import $ from 'jquery';
 
-const TableNews = ({ articles }) => {
+const TableNews = ({ articles, saveOrDelete }) => {
 
   const Articles = articles.map((article, index) => {
     return <tr>
@@ -47,7 +47,7 @@ const TableNews = ({ articles }) => {
           // VV onClick parens
         }
         >
-          Save For Later</Button>
+          {saveOrDelete}</Button>
       </td>
       <td>{article.publishedAt}</td>
     </tr >

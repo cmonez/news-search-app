@@ -66,7 +66,7 @@ class App extends React.Component {
       <SearchBar search={this.search} />
       <NewsTabs switch={this.switchBetweenSearchedAndSavedArticles} />
       {/* <List items={this.state.items} /> */}
-      <TableNews articles={this.state.articles} />
+      <TableNews articles={this.state.articles} saveOrDelete={this.state.buttonFunctionality} />
     </div >)
   }
 }
