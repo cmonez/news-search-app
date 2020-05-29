@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import $ from 'jquery';
 import axios from 'axios';
-const TableNews = ({ articles, saveOrDelete }) => {
+const TableNews = ({ articles, saveOrDelete, refresh }) => {
 
   const Articles = articles.map((article, index) => {
     return <tr>
@@ -31,15 +31,17 @@ const TableNews = ({ articles, saveOrDelete }) => {
 
             console.log('Delete functionality here!', article.url)
             axios.delete('/deleteArticle', { data: { url: article.url } })
-              .then(response => console.log(response))
+              .then((response) => {
+                refresh()
+              })
               .catch((err) => console.log(err))
 
           } else {
 
-            $(`#${index}`).prop('disabled', true)
             axios.post("/saveArticle", { article, })
               .then((response) => { console.log(response) })
               .catch((err) => { console.log('Error', err) })
+
           }
 
         }

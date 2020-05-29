@@ -19,6 +19,7 @@ class App extends React.Component {
     }
     this.search = this.search.bind(this);
     this.switchBetweenSearchedAndSavedArticles = this.switchBetweenSearchedAndSavedArticles.bind(this);
+    this.refreshArticleStateUponDeletion = this.refreshArticleStateUponDeletion.bind(this)
   }
   componentDidMount() {
     $.ajax({
@@ -58,6 +59,15 @@ class App extends React.Component {
     }
   }
 
+  refreshArticleStateUponDeletion() {
+    axios.get('/grabArticles')
+      .then(({ data }) => {
+        this.setState({
+          articles: data
+        })
+      })
+  }
+
 
   render() {
     return (<div>
@@ -66,7 +76,7 @@ class App extends React.Component {
       <SearchBar search={this.search} />
       <NewsTabs switch={this.switchBetweenSearchedAndSavedArticles} />
       {/* <List items={this.state.items} /> */}
-      <TableNews articles={this.state.articles} saveOrDelete={this.state.buttonFunctionality} />
+      <TableNews refresh={this.refreshArticleStateUponDeletion} articles={this.state.articles} saveOrDelete={this.state.buttonFunctionality} />
     </div >)
   }
 }
