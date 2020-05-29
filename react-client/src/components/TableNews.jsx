@@ -27,20 +27,23 @@ const TableNews = ({ articles, saveOrDelete }) => {
         </p>
         <Button variant="outline-success" id={index} onClick={() => {
 
-          $(`#${index}`).prop('disabled', true).removeClass("variant")
-
-          $.ajax({
-            url: "/saveArticle",
-            type: "POST",
-            // processData: false,
-            contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify(article),
-            success: () => console.log('Hello'),
-            error: (err) => {
-              console.log('err', err.statusCode);
-            },
-          })
+          if (saveOrDelete === 'Delete') {
+            console.log('Delete functionality here!')
+          } else {
+            $(`#${index}`).prop('disabled', true)
+            $.ajax({
+              url: "/saveArticle",
+              type: "POST",
+              // processData: false,
+              contentType: "application/json",
+              dataType: "json",
+              data: JSON.stringify(article),
+              success: () => console.log('Hello'),
+              error: (err) => {
+                console.log('err', err.statusCode);
+              },
+            })
+          }
 
           //  OnClick inner function parens
         }
