@@ -105,8 +105,11 @@ app.post('/tone', (req, res) => {
           toneInput: articleInformation,
           contentType: 'text/plain'
         })
-        .then(response => {
-          console.log(JSON.stringify(response.result, null, 2));
+        .then(({ result }) => {
+          var toneArray = result.document_tone['tones'].map((tone) => {
+            return [tone.tone_name, tone.score]
+          })
+          res.send(toneArray)
         })
         .catch(err => {
           console.log(err);
@@ -119,8 +122,12 @@ app.post('/tone', (req, res) => {
           toneInput: req.body.description,
           contentType: 'text/plain'
         })
-        .then(response => {
-          console.log(JSON.stringify(response.result, null, 2));
+        .then(({ result }) => {
+          var toneArray = result.document_tone['tones'].map((tone) => {
+            return [tone.tone_name, tone.score]
+          })
+          console.log('tone', toneArray)
+          res.send(toneArray)
         })
         .catch(err => {
           console.log(err);
