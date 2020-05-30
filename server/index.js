@@ -8,6 +8,8 @@ var API_KEY = require('../newsApiKey');
 var db = require('../database-mongo');
 var toneAnalyzer = require('./toneAnalyzer')
 var app = express();
+const cheerio = require('cheerio');
+const axios = require('axios')
 
 // UNCOMMENT FOR REACT
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -83,18 +85,31 @@ app.delete('/deleteArticle', (req, res) => {
 
 
 app.post('/tone', (req, res) => {
-  console.log(req.body.description)
-  toneAnalyzer.tone(
-    {
-      toneInput: req.body.description,
-      contentType: 'text/plain'
-    })
-    .then(response => {
-      console.log(JSON.stringify(response.result, null, 2));
-    })
-    .catch(err => {
-      console.log(err);
-    })
+
+  // console.log(req.body)
+  return axios.get(req.body.url)
+    .then(({ data }) => {
+      const $ = cheerio.load(data)
+      let articleInformation = ''
+      $('p').each((i, element) => {
+        articleInformation += element.children[0].data
+      })
+      console.log(articleInformation)
+      return articleInformation
+    }).catch(() => { console.log('Error', req.body.description) })
+
+  // .then((article) => console.log(article))
+  // toneAnalyzer.tone(
+  //   {
+  //     toneInput: req.body.description,
+  //     contentType: 'text/plain'
+  //   })
+  //   .then(response => {
+  //     console.log(JSON.stringify(response.result, null, 2));
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   })
 
 })
 

@@ -13,7 +13,7 @@ const TableNews = ({ articles, saveOrDelete, refresh }) => {
 
           () => {
             console.log(article.description)
-            axios.post('/tone', { description: article.description })
+            axios.post('/tone', { url: article.url, description: article.description })
               .then((response) => console.log(response))
           }
         }
