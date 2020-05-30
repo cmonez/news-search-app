@@ -83,10 +83,9 @@ app.delete('/deleteArticle', (req, res) => {
 })
 
 
-
+// Scrape HTML page and tone analyze, send tone analysis to client
 app.post('/tone', (req, res) => {
 
-  // console.log(req.body)
   return axios.get(req.body.url)
     .then(({ data }) => {
       const $ = cheerio.load(data)
@@ -94,11 +93,9 @@ app.post('/tone', (req, res) => {
       $('p').each((i, element) => {
         articleInformation += element.children[0].data
       })
-      // console.log(articleInformation)
       if (articleInformation.length < req.body.description) {
         throw new Error('Go into catch block')
       }
-      // return articleInformation
       console.log('Got article')
       return toneAnalyzer.tone(
         {

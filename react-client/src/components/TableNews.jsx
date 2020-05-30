@@ -14,11 +14,17 @@ const TableNews = ({ articles, saveOrDelete, refresh }) => {
           () => {
             console.log(article.description)
             axios.post('/tone', { url: article.url, description: article.description })
-              .then(({ data }) => console.log(data))
+              .then(({ data }) => {
+                console.log(data)
+
+              })
+            console.log('queried?', document.querySelector(`#toneMapper${index}`))
           }
+
         }
 
         >Get tone</Button>
+        <div id={`toneMapper${index}`}>This is the tone!</div>
       </td>
       <td>
         <a href={article.url} target={article.url} target="_blank">
