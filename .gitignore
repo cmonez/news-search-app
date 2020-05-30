@@ -1,3 +1,4 @@
 node_modules
-sampleData.json
-apiKey.js
+sampleData.js
+newsApiKey.js
+toneAnalyzerApiKey.js

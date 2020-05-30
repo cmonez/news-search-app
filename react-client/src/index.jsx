@@ -72,7 +72,7 @@ class App extends React.Component {
   render() {
     return (<div>
 
-      <h1>Item List</h1>
+      <h1>Search Articles</h1>
       <SearchBar search={this.search} />
       <NewsTabs switch={this.switchBetweenSearchedAndSavedArticles} />
       {/* <List items={this.state.items} /> */}

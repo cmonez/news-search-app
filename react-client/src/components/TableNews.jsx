@@ -15,16 +15,20 @@ const TableNews = ({ articles, saveOrDelete, refresh }) => {
             console.log(article.description)
             axios.post('/tone', { url: article.url, description: article.description })
               .then(({ data }) => {
-                console.log(data)
-
+                let stringed = ''
+                data.forEach((emotion) => {
+                  stringed += `${emotion[0]}:  ${emotion[1]}\n
+                  `
+                })
+                console.log('In data', stringed)
+                document.querySelector(`#toneMapper${index}`).append(stringed)
               })
-            console.log('queried?', document.querySelector(`#toneMapper${index}`))
           }
 
         }
 
         >Get tone</Button>
-        <div id={`toneMapper${index}`}>This is the tone!</div>
+        <div id={`toneMapper${index}`}></div>
       </td>
       <td>
         <a href={article.url} target={article.url} target="_blank">
@@ -75,7 +79,7 @@ const TableNews = ({ articles, saveOrDelete, refresh }) => {
     <Table striped bordered hover variant="dark">
       <thead>
         <tr>
-          <th>Author/News Source</th>
+          <th>Author/News Source </th>
           <th>Image</th>
           <th>Description</th>
           <th>Date Published</th>
