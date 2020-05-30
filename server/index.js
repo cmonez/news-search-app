@@ -94,22 +94,39 @@ app.post('/tone', (req, res) => {
       $('p').each((i, element) => {
         articleInformation += element.children[0].data
       })
-      console.log(articleInformation)
-      return articleInformation
-    }).catch(() => { console.log('Error', req.body.description) })
+      // console.log(articleInformation)
+      if (articleInformation.length < req.body.description) {
+        throw new Error('Go into catch block')
+      }
+      // return articleInformation
+      console.log('Got article')
+      return toneAnalyzer.tone(
+        {
+          toneInput: articleInformation,
+          contentType: 'text/plain'
+        })
+        .then(response => {
+          console.log(JSON.stringify(response.result, null, 2));
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    })
+    .catch(() => {
+      console.log('Got an error: In body descrption')
+      return toneAnalyzer.tone(
+        {
+          toneInput: req.body.description,
+          contentType: 'text/plain'
+        })
+        .then(response => {
+          console.log(JSON.stringify(response.result, null, 2));
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    })
 
-  // .then((article) => console.log(article))
-  // toneAnalyzer.tone(
-  //   {
-  //     toneInput: req.body.description,
-  //     contentType: 'text/plain'
-  //   })
-  //   .then(response => {
-  //     console.log(JSON.stringify(response.result, null, 2));
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   })
 
 })
 
