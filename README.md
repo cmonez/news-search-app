@@ -1,6 +1,6 @@
-#NEWS SEARCH APP
+# NEWS SEARCH APP
 
-## MERN New Search application
+### MERN New Search application
 
 - Grabs the latest news from the News API
 - Uses IBM Watson Tone Analyzer and cheerio webscraping to grab the contents of the selected article, analyze, and display the articles tone
